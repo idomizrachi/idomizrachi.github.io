@@ -1,0 +1,7 @@
+Initial setup of the project using:
+npm create vite@latest dev-blog -- --template react-t
+
+Use rolldown-vite - no
+
+Install  tailwindcss
+npm install tailwindcss @tailwindcss/vite
