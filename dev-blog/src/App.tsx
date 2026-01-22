@@ -1,12 +1,8 @@
-import { useState } from 'react'
-
 import './App.css'
 import { Sidebar } from './components/Sidebar'
 import { PostList } from './components/PostList'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div className="min-h-screen bg-[#0b1121] text-white font-sans">
