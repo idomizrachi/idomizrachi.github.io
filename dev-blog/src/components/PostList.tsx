@@ -31,20 +31,19 @@ const MOCK_POSTS: Post[] = [
 export const PostList = () => {
   return (
     <section>
-      <div className="flex justify-between items-end mb-8">
-        <h2 className="text-2xl font-bold text-white">Latest Posts</h2>
-        <button className="text-sky-400 text-sm hover:underline">View all</button>
+      <div className="flex justify-between items-end mb-4 md:mb-8">
+        <h2 className="text-2xl font-bold text-white">Recent Posts</h2>        
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         {MOCK_POSTS.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
       </div>
 
-      <div className="mt-12 flex justify-center">
+      <div className="mt-6 md:mt-12 flex justify-center">
         <button className="px-6 py-2 rounded-full border border-white/10 text-gray-400 text-sm hover:bg-white/5 transition-colors">
-          Load Older Posts
+          Show all posts
         </button>
       </div>
     </section>

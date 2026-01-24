@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
-@theme {
-  --color-brand-bg: #0b1120; /* The dark background from your screenshot */
-  --color-brand-accent: #38bdf8; /* The cyan button color */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50;
+  }
 }

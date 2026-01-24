@@ -1,0 +1,13 @@
+@layer base {
+    :root {
+      --background: 255 255 255; /* White */
+      --foreground: 15 23 42;    /* Slate 900 */
+      --primary: 37 99 235;     /* Blue 600 */
+    }
+  
+    .dark {
+      --background: 15 23 42;    /* Slate 900 */
+      --foreground: 248 250 252; /* Slate 50 */
+      --primary: 96 165 250;     /* Blue 400 */
+    }
+  }
