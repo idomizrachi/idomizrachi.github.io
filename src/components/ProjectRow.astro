@@ -1,0 +1,30 @@
+---
+import StatusBadge from "./StatusBadge.astro";
+import Tag from "./Tag.astro";
+
+const { project } = Astro.props;
+const { id, data } = project;
+const href = `/projects/${id}/`;
+const initials = data.title.split(" ").map((part: string) => part[0]).slice(0, 2).join("");
+---
+
+<a class="row" href={href}>
+  <div class="project-row-main">
+    {data.image ? (
+      <img class="thumb" src={data.image} alt="" loading="lazy" />
+    ) : (
+      <span class="thumb placeholder-thumb" aria-hidden="true">{initials}</span>
+    )}
+    <div>
+      <h3>{data.title}</h3>
+      <p>{data.description}</p>
+    </div>
+  </div>
+  <div class="row-meta">
+    <StatusBadge status={data.status} />
+    <div class="tag-list">
+      {data.stack.slice(0, 3).map((tag: string) => <Tag label={tag} />)}
+    </div>
+    <span aria-hidden="true">›</span>
+  </div>
+</a>

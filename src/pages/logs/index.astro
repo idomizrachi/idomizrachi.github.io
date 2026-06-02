@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LogRow from "../../components/LogRow.astro";
+
+const logs = (await getCollection("logs")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const projects = await getCollection("projects");
+const projectTitles = new Map(projects.map((project) => [project.id, project.data.title]));
+---
+
+<BaseLayout title="Logs" description="Dated progress updates, technical notes, lessons and decisions.">
+  <section class="container page-hero">
+    <h1>Logs</h1>
+    <p>Dated progress updates, technical notes, lessons and decisions. The captain's log for the dev lab.</p>
+  </section>
+  <section class="container panel listing">
+    <div class="row-list">
+      {logs.map((log) => <LogRow log={log} projectTitle={log.data.project ? projectTitles.get(log.data.project) : undefined} />)}
+    </div>
+  </section>
+</BaseLayout>

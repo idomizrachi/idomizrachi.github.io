@@ -1,0 +1,8 @@
+---
+const { title, href, action = "View all" } = Astro.props;
+---
+
+<div class="section-header">
+  <h2>{title}</h2>
+  {href && <a class="text-link" href={href}>{action} <span aria-hidden="true">→</span></a>}
+</div>

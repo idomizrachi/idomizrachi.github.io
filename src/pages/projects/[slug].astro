@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LogRow from "../../components/LogRow.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+import Tag from "../../components/Tag.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const logs = (await getCollection("logs"))
+  .filter((log) => log.data.project === project.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={project.data.title} description={project.data.description}>
+  <article class="content-container article">
+    <header class="article-header">
+      <h1>{project.data.title}</h1>
+      <p>{project.data.description}</p>
+      <div class="metadata">
+        <StatusBadge status={project.data.status} />
+        {project.data.started && <span>Started {project.data.started}</span>}
+        <span>Updated {project.data.updated}</span>
+      </div>
+      <div class="tag-list" style="margin-top: 18px;">
+        {project.data.stack.map((tag) => <Tag label={tag} />)}
+      </div>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  {logs.length > 0 && (
+    <section class="container panel listing">
+      <div class="section-header">
+        <h2>Project Logs</h2>
+      </div>
+      <div class="row-list">
+        {logs.map((log) => <LogRow log={log} projectTitle={project.data.title} />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

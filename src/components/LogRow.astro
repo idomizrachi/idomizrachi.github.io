@@ -1,0 +1,17 @@
+---
+const { log, projectTitle } = Astro.props;
+const { id, data } = log;
+const href = `/logs/${id}/`;
+const formatted = data.date.toLocaleDateString("en", { month: "short", day: "numeric" });
+---
+
+<a class="row" href={href}>
+  <div>
+    <h3>{data.title}</h3>
+    <p>{projectTitle ? `${projectTitle} · ${data.type ?? "Log"}` : data.type ?? "Log"}</p>
+  </div>
+  <div class="row-meta">
+    <span class="date">{formatted}</span>
+    <span aria-hidden="true">›</span>
+  </div>
+</a>

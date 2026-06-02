@@ -1,0 +1,22 @@
+---
+import StatusBadge from "./StatusBadge.astro";
+import Tag from "./Tag.astro";
+
+const { idea } = Astro.props;
+const { id, data } = idea;
+const href = `/ideas/${id}/`;
+---
+
+<a class="row" href={href}>
+  <div>
+    <h3>{data.title}</h3>
+    <p>{data.description}</p>
+  </div>
+  <div class="row-meta">
+    {data.status && <StatusBadge status={data.status} />}
+    <div class="tag-list">
+      {data.tags.slice(0, 3).map((tag: string) => <Tag label={tag} />)}
+    </div>
+    <span aria-hidden="true">›</span>
+  </div>
+</a>

@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+import Tag from "../../components/Tag.astro";
+
+export async function getStaticPaths() {
+  const ideas = await getCollection("ideas");
+  return ideas.map((idea) => ({ params: { slug: idea.id }, props: { idea } }));
+}
+
+const { idea } = Astro.props;
+const { Content } = await render(idea);
+---
+
+<BaseLayout title={idea.data.title} description={idea.data.description}>
+  <article class="content-container article">
+    <header class="article-header">
+      <h1>{idea.data.title}</h1>
+      <p>{idea.data.description}</p>
+      <div class="metadata">
+        {idea.data.status && <StatusBadge status={idea.data.status} />}
+        {idea.data.updated && <span>Updated {idea.data.updated}</span>}
+      </div>
+      <div class="tag-list" style="margin-top: 18px;">
+        {idea.data.tags.map((tag) => <Tag label={tag} />)}
+      </div>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

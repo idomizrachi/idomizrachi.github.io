@@ -1,0 +1,9 @@
+---
+const { status } = Astro.props;
+const className = String(status).toLowerCase().replaceAll(" ", "-");
+---
+
+<span class={`badge ${className}`}>
+  <span class="dot"></span>
+  {status}
+</span>

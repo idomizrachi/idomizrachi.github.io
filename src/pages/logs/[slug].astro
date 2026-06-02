@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Tag from "../../components/Tag.astro";
+
+export async function getStaticPaths() {
+  const logs = await getCollection("logs");
+  return logs.map((log) => ({ params: { slug: log.id }, props: { log } }));
+}
+
+const { log } = Astro.props;
+const { Content } = await render(log);
+const projects = await getCollection("projects");
+const project = log.data.project ? projects.find((item) => item.id === log.data.project) : undefined;
+---
+
+<BaseLayout title={log.data.title}>
+  <article class="content-container article">
+    <header class="article-header">
+      <h1>{log.data.title}</h1>
+      <div class="metadata">
+        <time datetime={log.data.date.toISOString()}>{log.data.date.toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric" })}</time>
+        {log.data.type && <span>{log.data.type}</span>}
+        {project && <a href={`/projects/${project.id}/`}>{project.data.title}</a>}
+      </div>
+      <div class="tag-list" style="margin-top: 18px;">
+        {log.data.tags.map((tag) => <Tag label={tag} />)}
+      </div>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

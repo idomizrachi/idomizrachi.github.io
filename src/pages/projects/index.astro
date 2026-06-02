@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectRow from "../../components/ProjectRow.astro";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => new Date(b.data.updated).valueOf() - new Date(a.data.updated).valueOf(),
+);
+---
+
+<BaseLayout title="Projects" description="Durable development work streams and concepts.">
+  <section class="container page-hero">
+    <h1>Projects</h1>
+    <p>Durable work streams, experiments, tools and apps that may be revisited over time.</p>
+  </section>
+  <section class="container panel listing">
+    <div class="row-list">
+      {projects.map((project) => <ProjectRow project={project} />)}
+    </div>
+  </section>
+</BaseLayout>
