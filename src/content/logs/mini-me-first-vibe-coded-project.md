@@ -31,6 +31,11 @@ Last week I gave vibe coding a real chance on a project I genuinely wanted to ex
 
 Three days later, I had a working Garmin watch face.
 
+<figure class="image-grid image-grid-two">
+  <img src="/images/mini-me-sleepy-watch.jpg" alt="Mini Me watch face in sleepy mode on a Garmin watch." />
+  <img src="/images/mini-me-running-watch.jpg" alt="Mini Me watch face in running mode on a Garmin watch." />
+</figure>
+
 For this project, I shaped the task list, made product decisions, tested each step in the Garmin simulator, and manually checked the result on the physical watch.
 
 This worked because the project was small enough: low risk, fast feedback, and easy to test on the actual device.
