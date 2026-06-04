@@ -1,7 +1,7 @@
 ---
 title: "Mini Me: the first project I actually vibe coded"
 date: 2026-06-01
-type: Draft
+type: Log
 tags:
   - AI
   - Running
