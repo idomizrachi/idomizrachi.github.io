@@ -21,14 +21,3 @@ That shows up in the work here because I keep thinking about consistency, feedba
 ## Other things that shape my taste
 
 I am also into sim racing and rally games, especially Forza and WRC-style driving. They scratch a similar itch for me: feel, systems, progression, control, and small adjustments that compound over time.
-
-## Stack I keep reaching for
-
-- SwiftUI
-- Kotlin
-- Jetpack Compose
-- Python
-- Ollama
-- Firebase
-- Supabase
-- Tailwind CSS
