@@ -11,11 +11,29 @@ const { Content } = await render(page);
 
 <BaseLayout title={page.data.title} description={page.data.description}>
   <article class="content-container article">
-    <header class="article-header">
-      <h1>{page.data.title}</h1>
-      {page.data.description && <p>{page.data.description}</p>}
-    </header>
-    <div class="prose">
+    <div class="about-intro">
+      <div class="about-copy">
+        <header class="article-header">
+          <h1>{page.data.title}</h1>
+          {page.data.description && <p>{page.data.description}</p>}
+        </header>
+        {page.data.intro && (
+          <div class="prose about-opening">
+            {page.data.intro.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        )}
+      </div>
+      <img
+        class="about-portrait"
+        src="/images/ido-about.jpg"
+        alt="Ido Mizrachi"
+        width="1200"
+        height="800"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+    <div class="prose about-prose">
       <Content />
     </div>
   </article>

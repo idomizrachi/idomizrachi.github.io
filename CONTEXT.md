@@ -65,3 +65,38 @@ A raw or lightweight concept that may or may not become a project. Ideas can hav
 ### Page
 
 A durable standalone section of the dev blog, such as About, Uses, Now, Stack, or Reading. Pages are not dated writing entries and are not part of the log stream.
+
+### About Page
+
+The front door to the dev blog's working notebook: a durable page that explains who Ido is, what he builds, and how to read the site's logs, projects, and ideas. It should be human-led, with the work system as supporting structure; it is a personal operating note first and a public professional intro second.
+_Avoid_: Résumé, LinkedIn bio
+
+### Personal Detail
+
+A personal fact included on the About Page only when it explains the work, recurring topics, or the reason the dev blog exists. Personal detail should make the notebook more legible rather than broadening the page into a full life story.
+_Avoid_: Full bio, unrelated personal trivia
+
+### About Tone
+
+The About Page should sound warm and personal while staying concise. It should read like a clear note from Ido, not a pitch, manifesto, or formal biography.
+_Avoid_: Marketing copy, manifesto, formal bio
+
+### About Opening
+
+The first sentence of the About Page should use plain identity and active direction: Ido's name, what he builds, and the recurring areas that pull his attention. It should be grounded rather than clever or title-driven.
+_Avoid_: Founder bio, portfolio pitch, creative technologist
+
+### Current Learning Topic
+
+A subject Ido is actively learning through small projects, notes, and experiments. AI can appear as a current learning topic, but it should sit alongside mobile development, running, and product design rather than becoming the About Page's central claim.
+_Avoid_: AI thesis, future-of-software claim
+
+### Long-Distance Readiness
+
+Ido's running practice is oriented around becoming an always-ready long-distance and ultra-distance runner rather than training only toward a specific race. It is a serious personal practice that can inform projects and ideas without making the dev blog a running blog.
+_Avoid_: Casual hobby, race prep only
+
+### Taste-Shaping Interest
+
+A personal interest that helps explain Ido's product taste, attention, or recurring ideas without becoming a major identity pillar of the dev blog. Sim racing and rally games can appear this way when framed around feel, systems, progression, control, and small adjustments.
+_Avoid_: Hobby list, gaming bio
