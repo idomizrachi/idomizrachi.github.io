@@ -4,7 +4,7 @@
 
 ### Dev Blog
 
-A personal engineering notebook for documenting logs, projects, ideas, and technical notes. Its primary audience is future Ido, with other engineers as a secondary audience.
+A personal engineering notebook for documenting logs, projects, rough sketches, and technical notes. Its primary audience is future Ido, with other engineers as a secondary audience.
 
 ### Reader
 
@@ -58,17 +58,13 @@ _Avoid_: Streak pressure, inactivity warning
 The design rule that Mini Me should respond to effort, rest, recovery, and consistency with encouragement. Even low-energy states such as poor sleep or recovery should feel like reflection, not judgment.
 _Avoid_: Shame, punishment, guilt
 
-### Idea
-
-A raw or lightweight concept that may or may not become a project. Ideas can have their own pages, but they are allowed to stay rough and exploratory; an idea may optionally have a status of Seed, Exploring, Promoted, or Archived.
-
 ### Page
 
 A durable standalone section of the dev blog, such as About, Uses, Now, Stack, or Reading. Pages are not dated writing entries and are not part of the log stream.
 
 ### About Page
 
-The front door to the dev blog's working notebook: a durable page that explains who Ido is, what he builds, and how to read the site's logs, projects, and ideas. It should be human-led, with the work system as supporting structure; it is a personal operating note first and a public professional intro second.
+The front door to the dev blog's working notebook: a durable page that explains who Ido is, what he builds, and how to read the site's logs and projects. It should be human-led, with the work system as supporting structure; it is a personal operating note first and a public professional intro second.
 _Avoid_: Résumé, LinkedIn bio
 
 ### Personal Detail
