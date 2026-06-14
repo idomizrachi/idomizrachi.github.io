@@ -13,5 +13,8 @@
     "astro": "latest",
     "typescript": "latest"
   },
+  "overrides": {
+    "esbuild": "0.28.1"
+  },
   "devDependencies": {}
 }
