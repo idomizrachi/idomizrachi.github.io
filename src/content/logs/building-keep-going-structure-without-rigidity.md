@@ -24,6 +24,11 @@ I just do not want to guess what to do every day, and I do not want one missed w
 
 That is the product space for Keep Going: a lightweight weekly planner that helps me stay consistent without treating the plan as sacred.
 
+<figure>
+  <img src="/images/keep-going-blank-week.png" alt="Keep Going showing a blank weekly planner with weekly targets and Planned Rest days." />
+  <figcaption>A blank week in Keep Going: structure is visible, but nothing is auto-generated or treated as mandatory.</figcaption>
+</figure>
+
 ## Product First
 
 The most interesting part of this project is not the stack.
@@ -127,6 +132,11 @@ It is not the full vision. It is the smallest version that proves the core behav
 - I can keep a Sunday-to-Saturday training week.
 - I can track completed weekly distance.
 - I can see a positive weekly summary that helps me keep going.
+
+<figure>
+  <img src="/images/keep-going-first-slice.png" alt="Keep Going showing a completed weekly plan with Plan met plus extras and an edit workout modal." />
+  <figcaption>The first useful slice: a real week, completed workouts, weekly distance, and an editable workout flow.</figcaption>
+</figure>
 
 The implementation is intentionally small:
 

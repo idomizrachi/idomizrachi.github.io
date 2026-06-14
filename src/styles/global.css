@@ -522,6 +522,13 @@ h1 {
   margin: 34px 0;
 }
 
+.prose figcaption {
+  margin-top: 10px;
+  color: #6b7280;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
 .prose img {
   width: 100%;
   border: 1px solid var(--border);
