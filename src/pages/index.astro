@@ -1,15 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectRow from "../components/ProjectRow.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import Tag from "../components/Tag.astro";
 
-const projects = (await getCollection("projects")).sort(
-  (a, b) => new Date(b.data.updated).valueOf() - new Date(a.data.updated).valueOf(),
-);
 const logs = (await getCollection("logs")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const featuredProject = projects.find((project) => project.data.featured) ?? projects[0];
 const stack = ["SwiftUI", "Kotlin", "Jetpack Compose", "Python", "Firebase", "Supabase", "Ollama", "Tailwind CSS"];
 ---
 
@@ -17,24 +12,11 @@ const stack = ["SwiftUI", "Kotlin", "Jetpack Compose", "Python", "Firebase", "Su
   <section class="container hero">
     <div>
       <h1>Building, learning and shipping.</h1>
-      <p>A personal dev lab for logs, projects and technical notes.</p>
+      <p>A personal dev lab for logs and technical notes.</p>
       <div class="button-row">
         <a class="button primary" href="/logs/">Read Logs <span aria-hidden="true">→</span></a>
-        <a class="button" href="/projects/">Explore Projects</a>
       </div>
     </div>
-
-    {featuredProject && (
-      <article class="panel featured">
-        <div>
-          <span class="eyebrow"><span class="dot"></span> Latest update</span>
-          <h2>{featuredProject.data.title}</h2>
-          <p>{featuredProject.data.description}</p>
-          <a class="text-link" href={`/projects/${featuredProject.id}/`}>View project <span aria-hidden="true">→</span></a>
-        </div>
-        {featuredProject.data.image && <img src={featuredProject.data.image} alt="" loading="eager" />}
-      </article>
-    )}
   </section>
 
   <section class="container overview-grid" aria-label="Primary sections">
@@ -44,11 +26,11 @@ const stack = ["SwiftUI", "Kotlin", "Jetpack Compose", "Python", "Firebase", "Su
       <p>Learnings, technical notes and dev logs.</p>
       <span class="text-link">See all logs <span aria-hidden="true">→</span></span>
     </a>
-    <a class="panel overview-card" href="/projects/">
+    <a class="panel overview-card" href="/about/">
       <span class="tile-icon" aria-hidden="true">◇</span>
-      <h2>Projects</h2>
-      <p>Things I am building and shipping.</p>
-      <span class="text-link">See all projects <span aria-hidden="true">→</span></span>
+      <h2>About</h2>
+      <p>Who I am and what shapes the work here.</p>
+      <span class="text-link">More about me <span aria-hidden="true">→</span></span>
     </a>
   </section>
 
@@ -65,21 +47,12 @@ const stack = ["SwiftUI", "Kotlin", "Jetpack Compose", "Python", "Firebase", "Su
     </div>
   </section>
 
-  <section class="container split-grid">
-    <div class="panel">
-      <SectionHeader title="Latest Projects" href="/projects/" />
-      <div class="row-list">
-        {projects.slice(0, 4).map((project) => <ProjectRow project={project} />)}
-      </div>
-    </div>
-
-    <div class="panel">
-      <SectionHeader title="About / Stack" href="/about/" action="More about me" />
-      <div class="stack-copy">
-        <p>I build apps, tools and games. Interested in AI, mobile, running and thoughtful product design.</p>
-        <div class="tag-list">
-          {stack.map((tag) => <Tag label={tag} />)}
-        </div>
+  <section class="container panel section-panel">
+    <SectionHeader title="About / Stack" href="/about/" action="More about me" />
+    <div class="stack-copy">
+      <p>I build apps, tools and games. Interested in AI, mobile, running and thoughtful product design.</p>
+      <div class="tag-list">
+        {stack.map((tag) => <Tag label={tag} />)}
       </div>
     </div>
   </section>

@@ -21,7 +21,7 @@ const project = log.data.project ? projects.find((item) => item.id === log.data.
       <div class="metadata">
         <time datetime={log.data.date.toISOString()}>{log.data.date.toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric" })}</time>
         {log.data.type && <span>{log.data.type}</span>}
-        {project && <a href={`/projects/${project.id}/`}>{project.data.title}</a>}
+        {project && <span>{project.data.title}</span>}
       </div>
       <div class="tag-list" style="margin-top: 18px;">
         {log.data.tags.map((tag) => <Tag label={tag} />)}

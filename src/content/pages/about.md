@@ -3,7 +3,7 @@ title: About
 description: A short note about Ido, the dev lab, and the work that shows up here.
 intro:
   - "I'm Ido Mizrachi, and I build small apps, tools, and experiments around mobile development, product design, running, and the things I am learning next."
-  - "This dev lab is where I keep the work close enough to revisit: project notes, build logs, rough sketches, and technical notes from whatever I am exploring at the time."
+  - "This dev lab is where I keep the work close enough to revisit: build logs, rough sketches, and technical notes from whatever I am exploring at the time."
 ---
 
 ## What this place is
