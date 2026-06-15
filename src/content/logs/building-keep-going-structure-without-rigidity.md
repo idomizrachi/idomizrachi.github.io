@@ -10,19 +10,19 @@ tags:
   - Supabase
 ---
 
-Keep Going exists because I needed a small tech tool to help me stay with a running plan for a long time, not just follow one perfect week.
+Keep Going exists because I needed a small tech tool to help me stay with a running plan for months of training.
 
 I like Garmin. I like how much data it gives me. For running history, activity tracking, and performance details, Garmin is still the system of record.
 
-But a structured Garmin training program can sometimes feel too strict for the way I want to train right now. Missing a workout, or realizing the planned workout is too hard for the day I am actually having, can make the plan feel heavier than it needs to be.
+A structured Garmin training program can sometimes feel too strict for the way I want to train right now. Missing a workout, or realizing the planned workout is too hard for the day I am having, can make the plan feel heavier than it needs to be.
 
 Daily suggestions feel lighter. They still provide direction, but they do not make the whole week feel like a contract.
 
-My next target race is a 45 km race in December, so I have enough time to train with more flexibility. I still want structure. I still want progress. I still want to gradually increase my weekly running distance from around 40 km to 50 km to 60 km.
+My next target race is a 45 km race in December, so I have enough time to train with more flexibility. I still want structure. I still want progress. I still want to build my weekly running distance from around 40 km to 50 km to 60 km.
 
-I just do not want to guess what to do every day, and I do not want one missed workout to make the whole plan feel broken.
+I do not want to guess what to do every day, and I do not want one missed workout to make the whole plan feel broken.
 
-That is the product space for Keep Going: a lightweight weekly planner that helps me stay consistent without treating the plan as sacred.
+Keep Going fills that gap: a lightweight weekly planner that helps me stay consistent without treating the plan as sacred.
 
 <figure>
   <img src="/images/keep-going-blank-week.png" alt="Keep Going showing a blank weekly planner with weekly targets and Planned Rest days." />
@@ -31,45 +31,27 @@ That is the product space for Keep Going: a lightweight weekly planner that help
 
 ## Product First
 
-The most interesting part of this project is not the stack.
+I started this project away from the editor.
 
-The interesting part is the change in my development pattern.
+Before I wrote components or database tables, I used a "grill me" workflow to make the product smaller and clearer. The agent kept asking product questions until the requirements, language, and tradeoffs became clear enough to build.
 
-Instead of opening the editor and starting with components, tables, and routes, I started with a "grill me" workflow. The agent's job was to keep asking product questions until the requirements, language, and tradeoffs became clear enough to build.
+The process was slower before the first commit. Some of the questions were precise enough to be annoying.
 
-The process was slower before the first commit. Some of the questions were annoyingly precise in the useful way.
+The questions narrowed the product fast. Garmin already handled activity history, performance data, and long-term records. Keep Going needed to handle the plan around the activity: what I intended to do, what changed, and whether the week still made sense.
 
-Is Keep Going a fitness tracker?
-
-No. Garmin already does that.
-
-Is Keep Going a training-plan compliance system?
-
-No. The plan should help me stay consistent, not punish every deviation.
-
-Is rest a stored workout?
-
-No. Rest is a display state.
+That made a few decisions easier. Rest became a display state, not a stored workout. The plan became a guide for consistency, not a compliance system.
 
 Should the app judge exact day-by-day compliance?
 
-No. The week matters more than the original order.
+No. The week matters more than the original order. A skipped workout can coexist with a good week if the completed weekly mix still covers the intention of the plan.
 
-Can a skipped workout coexist with a good week?
-
-Yes, if the completed weekly mix still covers the intention of the plan.
-
-That changed the implementation work. Once the product decisions were clearer, the agent could move much faster on the execution. My time shifted toward product refinement and product judgment, and less toward typing every coding detail myself.
+Clear product decisions changed the implementation work. Once the product had sharper boundaries, the agent could move faster on the execution. I spent more time on product refinement and product judgment, and less time typing every coding detail myself.
 
 It feels slower at the beginning, but faster across the whole project.
 
 ## The Language Is Part Of The Product
 
-Keep Going is built around a simple idea:
-
-The app should describe the week by what happened, not by how far it deviated from the original plan.
-
-That is why the language matters.
+Keep Going describes the week by what I completed, not by how far I drifted from the original plan.
 
 A missed workout is not a failure state. A changed workout is not a violation. A partial week is still training.
 
@@ -82,7 +64,7 @@ The product terms carry that belief:
 - **Partially Done**: a soft past-week summary focused on what was completed.
 - **Keep Going**: the current-week nudge while the week is still in progress.
 
-This is where product thinking starts to shape code.
+Those choices shaped the code.
 
 If rest is not a workout, the database does not need fake rest rows.
 
@@ -112,13 +94,9 @@ So Keep Going compares broad weekly buckets instead:
 - Strength
 - Custom
 
-That product decision reduced the complexity of the first shippable product. The app did not need to solve every possible swap flow immediately. It only needed to understand whether the week still covered the intended mix.
+That product decision reduced the complexity of the first shippable product. The app did not need to solve the swap flows I had imagined at the start. It only needed to understand whether the week still covered the intended mix.
 
-That is the kind of scope reduction I want from product-first development.
-
-Not "build less because we gave up."
-
-Build less because the important behavior became clearer.
+That decision cut scope without weakening the product. I could ship the weekly planner before building every possible swap flow.
 
 ## The First Useful Slice
 
@@ -138,7 +116,7 @@ It is not the full vision. It is the smallest version that proves the core behav
   <figcaption>The first useful slice: a real week, completed workouts, weekly distance, and an editable workout flow.</figcaption>
 </figure>
 
-The implementation is intentionally small:
+The implementation stays small on purpose:
 
 - React
 - TypeScript
@@ -147,7 +125,7 @@ The implementation is intentionally small:
 - Supabase Auth
 - Supabase Postgres
 
-The first persisted version uses one `workouts` table. Training weeks and training days are derived from workout dates. Run, strength, and custom workouts live together. Supabase Auth gives each user a private planner, and row-level security keeps the data scoped to that user.
+The first persisted version uses one `workouts` table. The app derives training weeks and training days from workout dates. Run, strength, and custom workouts live together. Supabase Auth gives each user a private planner, and row-level security keeps the data scoped to that user.
 
 Those technical choices are not the point of the post. They matter because they serve the product shape.
 
@@ -159,11 +137,11 @@ Keep Going is not Garmin, so the app records only enough data to support plannin
 
 ## What Changed
 
-This project is making me think differently about building software with agents.
+This project is changing how I build software with agents.
 
-The agent is useful for implementation work, but only after the product is sharp enough.
+The agent helps with implementation work after I sharpen the product.
 
-The valuable part is not asking an agent to "build me an app" from a fuzzy idea. The valuable part is using the agent to pressure-test the idea first:
+I get less value from asking an agent to "build me an app" from a fuzzy idea. I get more value from using the agent to pressure-test the idea first:
 
 - What is this product not?
 - What behavior should it reward?
@@ -171,18 +149,12 @@ The valuable part is not asking an agent to "build me an app" from a fuzzy idea.
 - What can wait until later?
 - What is the smallest slice that proves the product?
 
-After that, implementation work becomes easier to delegate, because the agent is no longer guessing the product.
+After that, I can delegate more implementation work because the agent is no longer guessing the product.
 
-That is the shift I care about:
+I still wrote code, reviewed behavior, and made product calls. The difference was where I spent my attention.
 
-More time on product refinement.
+I spent more time deciding what Keep Going should reward, and less time filling in implementation details by hand.
 
-Less developer time spent on coding details.
-
-Faster idea-to-product movement overall.
+With those decisions in place, I moved from a fuzzy running-plan problem to a working product slice in about a week.
 
 Keep Going is still a small app. It is still in progress. But the foundation already does what I wanted from it: it gives the week enough structure to follow, and enough flexibility to keep training when the week changes.
-
-That is the whole product promise.
-
-Structure without rigidity.
