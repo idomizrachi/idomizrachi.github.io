@@ -14,7 +14,8 @@
     "typescript": "latest"
   },
   "overrides": {
-    "esbuild": "0.28.1"
+    "esbuild": "0.28.1",
+    "yaml": "2.8.3"
   },
   "devDependencies": {}
 }
