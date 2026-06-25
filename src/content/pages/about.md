@@ -1,23 +1,25 @@
 ---
 title: About
-description: A short note about Ido, the dev lab, and the work that shows up here.
+description: A short note about Ido, the dev notebook, and the ideas that show up here.
 intro:
-  - "I'm Ido Mizrachi, and I build small apps, tools, and experiments around mobile development, product design, running, and the things I am learning next."
-  - "This dev lab is where I keep the work close enough to revisit: build logs, rough sketches, and technical notes from whatever I am exploring at the time."
+  - "I'm Ido Mizrachi. I'm a software engineer, and lately I've been spending more time thinking like a product builder: not just how to make something work, but why it should exist and how it should feel."
+  - "This site is where I keep track of small builds, product ideas, technical notes, and the parts of the process I want to remember later."
 ---
 
-## What this place is
+## What I am practicing
 
-The primary reader is future me. I use this site to remember what I tried, what worked, what felt interesting, and what I might want to pick up again later.
+I use small projects as a way to practice the whole shape of building. Code is still the center of it, but I am trying to get better at the decisions around the code too: what problem is worth solving, what should be left out, how the thing should behave, and what kind of feeling it should leave behind.
 
-Other engineers are welcome here too. If a note helps someone understand a trade-off, a tool, a product idea, or a small implementation detail, that is a good bonus.
+Most of the notes here are written for future me. If they also help another engineer follow a trade-off, avoid a small trap, or think through an idea differently, that is a good bonus.
 
-## Running practice
+## What tends to show up here
+
+The recurring threads are mobile development, personal tools, wearables, product sketches, AI-assisted building, and experiments that start from some small itch. I like ideas that are practical, but not only practical. The details of how something feels usually matter to me as much as whether it technically works.
+
+## Personal context
 
 Running is a serious practice for me. I am working toward being the kind of long-distance runner who is always ready, not only someone training for a single race.
 
-That shows up in the work here because I keep thinking about consistency, feedback loops, motivation, wearables, and personal tools that make effort feel visible.
+That shows up in how I think about software: consistency, feedback loops, motivation, wearables, recovery, and tools that make effort visible without turning it into pressure.
 
-## Other things that shape my taste
-
-I am also into sim racing and rally games, especially Forza and WRC-style driving. They scratch a similar itch for me: feel, systems, progression, control, and small adjustments that compound over time.
+I am also into sim racing and rally games, especially Forza and WRC-style driving. They scratch a similar itch: feel, systems, progression, control, and small adjustments that compound over time.
