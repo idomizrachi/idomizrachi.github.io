@@ -1,6 +1,5 @@
 ---
 title: About
-description: 
 intro:
   - "I'm Ido Mizrachi. I'm a software engineer, and lately I've been spending more time thinking like a product builder: not just how to make something work, but why it should exist and how it should feel."
   - "This site is where I keep track of small builds, product ideas, technical notes, and the parts of the process I want to remember later."
