@@ -2,6 +2,8 @@
 import "../styles/global.css";
 
 const { title = "Ido.dev", description = "A quiet dev lab for logs and technical notes." } = Astro.props;
+const isLogsPage = Astro.url.pathname.startsWith("/logs/");
+const isAboutPage = Astro.url.pathname.startsWith("/about/");
 const pageTitle = title === "Ido.dev" ? title : `${title} | Ido.dev`;
 ---
 
@@ -22,8 +24,8 @@ const pageTitle = title === "Ido.dev" ? title : `${title} | Ido.dev`;
             <span class="brand-mark">&lt;/&gt;</span>
           </a>
           <div class="nav-links">
-            <a href="/logs/">Logs</a>
-            <a href="/about/">About</a>
+            <a href="/logs/" aria-current={isLogsPage ? "page" : undefined}>Logs</a>
+            <a href="/about/" aria-current={isAboutPage ? "page" : undefined}>About</a>
           </div>
           <div class="header-actions" aria-label="External links">
             <a class="icon-link" href="https://github.com/idomizrachi" aria-label="GitHub">

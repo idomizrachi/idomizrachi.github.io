@@ -7,34 +7,299 @@ if (!page) {
   throw new Error("Missing about page content.");
 }
 const { Content } = await render(page);
+
+const stops = [
+  {
+    id: "music-shop",
+    title: "Music Shop",
+    sprite: ["00001110", "00011110", "00010010", "00010010", "00110010", "01110110", "01101110", "00001100"],
+    context: "Music streaming · 2009–2010",
+    story: [
+      "I started building for the iPhone when iOS 3.0 was current. My first product was a music streaming app, and I built both the native iPhone client and the PHP and MySQL backend. Getting from a catalog on the server to something you could listen to on a phone gave me a reason to learn both sides of the stack.",
+      "It was also my first time taking responsibility for the product as a whole. I had to decide what belonged in the app, what the server needed to provide, and how the two should work together. I still enjoy projects that let me follow an idea all the way through to something you can use.",
+    ],
+  },
+  {
+    id: "workshop",
+    title: "Workshop",
+    sprite: ["00011000", "00111100", "01111110", "11111111", "01100110", "01111110", "01011010", "01011010"],
+    context: "Matrix, NICE Systems & Kenshoo · 2010–2015",
+    story: [
+      "At Matrix, I built iOS apps for clients, maintained a C# and SQL Server content management system, and designed and taught an iOS development course. Teaching made me put words to decisions I was already making in code, from how to structure an app to where to start when something goes wrong.",
+      "At NICE Systems, I worked on a customer experience SDK for iOS and Android and coordinated sprint planning across both platforms. With an SDK, part of the job is thinking about what another developer needs to integrate it into their own app. I went on to join Kenshoo as a senior iOS developer.",
+    ],
+  },
+  {
+    id: "signal-tower",
+    title: "Signal Tower",
+    sprite: ["10011001", "01011010", "00111100", "00011000", "00100100", "00111100", "01011010", "01111110"],
+    context: "Jive Software · 2015–2018",
+    story: [
+      "At Jive, I worked on native iOS apps for messaging and collaboration. One of the features I built was real-time chat with WebSockets and ReactiveCocoa. Messages had to arrive as conversations happened, and the app also needed to handle file transfers and keep working when a connection dropped.",
+      "I started there writing Objective-C and building interfaces in code. Later, I shipped Swift features for editing and sharing documents in the enterprise social app. I also maintained unit tests and monitored performance. As a staff engineer, I took on more of the feature design alongside the implementation.",
+    ],
+  },
+  {
+    id: "delivery-depot",
+    title: "Delivery Depot",
+    sprite: ["00000000", "11111000", "10011110", "11111001", "11111111", "11111111", "01100110", "00000000"],
+    context: "Bringg · Senior iOS Developer · Last-mile delivery",
+    story: [
+      "Bringg helps businesses manage the last mile of a delivery, from assigning a route to handing an order to the customer. Dispatchers follow the route’s progress in a web console. Drivers use a mobile app to see their stops, record pickups and drop-offs, and capture proof of delivery, such as a photo or signature.",
+      "I built core iOS workflows in Swift and UIKit, including proof of delivery. Picture a driver at a customer’s door with no cell service. They still need to record the handoff and move on to the next stop. We saved their work on the device and queued HTTP requests so the app could sync those actions when service returned.",
+      "The app also needed to receive updates from the server. We used WebSockets and push notifications for that side of the workflow. I helped decide what the first release needed to support by walking through the driver’s route and identifying which steps they had to be able to finish offline.",
+    ],
+    reference: { url: "https://help.bringg.com/docs/about-the-bringg-driver-app-1", label: "How the Bringg Driver App works" },
+  },
+  {
+    id: "build-lab",
+    title: "Build Lab",
+    sideQuest: true,
+    sprite: ["01111110", "11000011", "10100101", "10011001", "10100101", "11000011", "01111110", "00111100"],
+    context: "Bringg · Builds, tests & mentoring",
+    story: [
+      "A change to a delivery workflow can span the iOS and Android driver apps, the backend APIs that record driver actions, and the web console where dispatchers follow the route. I delivered features across all four, using coding agents to work across codebases. That meant following a change from what the driver sees on the phone to what the dispatcher sees back at base.",
+      "I automated iOS App Store and test builds and stabilized a mobile regression suite of about 400 tests across iOS and Android. We went from roughly 50 failing tests to a fully passing run. With the suite passing, the team could rely less on repeating regression checks by hand.",
+      "I also onboarded and mentored engineers and helped define what major mobile features needed to cover in their first release. My familiarity with the driver app helped me point out where a proposed change would affect an existing workflow and where we could keep the implementation simpler.",
+    ],
+  },
+  {
+    id: "trailhead",
+    title: "Free Roam",
+    sideQuest: true,
+    sprite: ["00011000", "00111100", "00011000", "01111110", "00111100", "11111111", "00011000", "00011000"],
+    context: "Running, wearables & sim racing",
+    story: [
+      "I train for long-distance running, and that gives me plenty of ideas for software. I’m interested in how a watch or training log can show that the work is adding up while leaving room for recovery and the occasional messy week. That question comes up in Keep Going and in my experiments with building for Apple Watch.",
+      "I also build arcade setups and play sim racing and rally games, especially Forza and WRC-style driving. I enjoy making a small adjustment, taking another run, and seeing if I can feel the difference. It’s a lot like how I approach the small projects I write about here.",
+    ],
+  },
+];
+
+const checkpointLabels = ["01", "02", "03", "04", "A", "B"];
+const palettes = ["meadow", "sunset", "sky", "coral", "violet", "forest"];
+const skills = ["Full-stack beginnings", "Craft & collaboration", "Real-time systems", "Offline-first thinking", "Tools & teamwork", "Always exploring"];
 ---
 
-<BaseLayout title={page.data.title} description={page.data.description}>
-  <article class="content-container article">
-    <div class="about-intro">
-      <div class="about-copy">
-        <header class="article-header">
-          <h1>{page.data.title}</h1>
-          {page.data.description && <p>{page.data.description}</p>}
-        </header>
-        {page.data.intro && (
-          <div class="prose about-opening">
-            {page.data.intro.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
-        )}
+<BaseLayout title={page.data.title} description="Follow Ido Mizrachi’s journey through mobile development, product building, and side quests.">
+  <article class="about-world content-container">
+    <header class="profile">
+      <div>
+        <p class="eyebrow">PLAYER 01 · ENGINEER & BUILDER</p>
+        <h1>{page.data.title}</h1>
+        {page.data.intro?.map((paragraph) => <p>{paragraph}</p>)}
+        <a class="start-link" href="#music-shop">Start the adventure <span aria-hidden="true">↓</span></a>
       </div>
-      <img
-        class="about-portrait"
-        src="/images/ido-about.jpg"
-        alt="Ido Mizrachi"
-        width="1200"
-        height="800"
-        loading="eager"
-        decoding="async"
-      />
-    </div>
-    <div class="prose about-prose">
-      <Content />
-    </div>
+      <figure class="portrait">
+        <img src="/images/ido-about.jpg" alt="Ido Mizrachi" width="1200" height="800" decoding="async" />
+        <figcaption><span class="status-light"></span> Still building. Still exploring.</figcaption>
+      </figure>
+    </header>
+
+    <section class="adventure" aria-label="The road so far" data-world>
+      <div class="journey-hud">
+        <div class="hud-top"><span class="hud-label">ADVENTURE LOG</span><span class="score" data-score aria-live="polite">Scroll to explore · 6 stages</span></div>
+        <nav class="stage-nav" aria-label="Journey checkpoints">
+          {stops.map((stop, index) => (
+            <a href={`#${stop.id}`} data-landmark class={palettes[index]} aria-label={`${stop.sideQuest ? "Side quest" : "Stage"} ${checkpointLabels[index]}: ${stop.title}`}>
+              <span class="stage-dot">{checkpointLabels[index]}</span>
+              <span class="nav-title">{stop.title}</span>
+            </a>
+          ))}
+        </nav>
+        <div class="progress-track" aria-hidden="true"><span data-progress></span></div>
+      </div>
+
+      {[
+        { title: "Work history", description: "From my first iPhone app to building delivery software.", stops: stops.slice(0, 4) },
+        { title: "Beyond the timeline", description: "How I help teams build, and what keeps me curious outside work.", stops: stops.slice(4) },
+      ].map((group, groupIndex) => (
+        <section class:list={["journey-group", { "bonus-group": groupIndex === 1 }]} aria-labelledby={`journey-group-${groupIndex}`}>
+          <header class="group-heading">
+            <h2 id={`journey-group-${groupIndex}`}>{group.title}</h2>
+            <p>{group.description}</p>
+          </header>
+          <div class="chapters">
+        {group.stops.map((stop) => {
+          const index = stops.indexOf(stop);
+          return (
+          <section class={`chapter ${palettes[index]}`} id={stop.id} aria-labelledby={`${stop.id}-title`}>
+            <div class="checkpoint" aria-hidden="true"><span>{checkpointLabels[index]}</span></div>
+            <div class="chapter-card">
+              <header class="chapter-banner">
+                <div class="stage-meta"><span>{stop.sideQuest ? "SIDE QUEST" : `WORLD 0${index + 1}`}</span><span class="stage-state" data-stage-state>CHECKPOINT</span></div>
+                <div class="chapter-heading">
+                  <span class="sprite-tile" aria-hidden="true"><span class="map-icon" style={{ "--sprite": stop.sprite.flatMap((row, y) => Array.from(row, (pixel, x) => pixel === "1" ? `${x * 4}px ${y * 4}px` : "").filter(Boolean)).join(", ") }}></span></span>
+                  <div><h2 id={`${stop.id}-title`}>{stop.title}</h2><p>{stop.context}</p></div>
+                </div>
+                <div class="scenery" aria-hidden="true"><i></i><i></i><i></i><span>✦</span></div>
+              </header>
+              <div class="chapter-story">
+                {stop.story.map((paragraph) => <p>{paragraph}</p>)}
+                {stop.reference && <p><a href={stop.reference.url}>{stop.reference.label} →</a></p>}
+                {stop.id === "trailhead" && (
+                  <>
+                    <ul class="log-links">
+                      <li><a href="/logs/building-keep-going-structure-without-rigidity/">Building Keep Going →</a></li>
+                      <li><a href="/logs/mini-me-first-vibe-coded-project/">Mini Me on Apple Watch →</a></li>
+                    </ul>
+                    <details class="field-notes"><summary>More about what I build</summary><Content /></details>
+                  </>
+                )}
+                <footer class="skill"><span aria-hidden="true">✦</span> {skills[index]}</footer>
+              </div>
+            </div>
+          </section>
+          );
+        })}
+          </div>
+        </section>
+      ))}
+      <footer class="journey-end"><span class="end-star" aria-hidden="true">✦</span><p class="hud-label">THE ADVENTURE CONTINUES</p><h2>Next checkpoint? Something new.</h2><p>I’m keeping track of the builds along the way.</p><a class="start-link" href="/logs/">Explore the dev log <span aria-hidden="true">→</span></a></footer>
+    </section>
   </article>
 </BaseLayout>
+
+<script>
+  const world = document.querySelector("[data-world]");
+  const landmarks = Array.from(world?.querySelectorAll<HTMLAnchorElement>("[data-landmark]") ?? []);
+  const chapters = Array.from(world?.querySelectorAll<HTMLElement>(".chapter") ?? []);
+  const score = world?.querySelector<HTMLElement>("[data-score]");
+  const progress = world?.querySelector<HTMLElement>("[data-progress]");
+  const visited = new Set<number>();
+
+  if (world && score && progress && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const index = chapters.indexOf(entry.target as HTMLElement);
+        visited.add(index);
+        chapters[index].dataset.visited = "";
+        const state = chapters[index].querySelector("[data-stage-state]");
+        if (state) state.textContent = "DISCOVERED ✓";
+        landmarks.forEach((landmark, position) => {
+          if (position === index) landmark.setAttribute("aria-current", "location");
+          else landmark.removeAttribute("aria-current");
+          landmark.toggleAttribute("data-visited", visited.has(position));
+        });
+        score.textContent = visited.size === chapters.length
+          ? "All stages explored · Adventure continues!"
+          : `${visited.size} / ${chapters.length} stages explored`;
+        progress.style.width = `${visited.size / chapters.length * 100}%`;
+      }
+    }, { rootMargin: "-25% 0px -45% 0px", threshold: 0 });
+    chapters.forEach((chapter) => observer.observe(chapter));
+  }
+</script>
+
+<style>
+  .about-world { --mono: ui-monospace, SFMono-Regular, Menlo, monospace; --ink: #29263f; width: min(100% - 40px, 1000px); margin-block: clamp(32px, 6vw, 72px); color: var(--ink); }
+  .profile { display: grid; grid-template-columns: 1fr 0.55fr; align-items: center; gap: clamp(28px, 5vw, 64px); margin-bottom: 56px; }
+  .profile .eyebrow { color: #7056a0; font: 700 .7rem/1.6 var(--mono); letter-spacing: .1em; }
+  .profile h1 { font-size: clamp(2.5rem, 5.5vw, 4.3rem); max-width: 550px; }
+  .profile p:not(.eyebrow) { color: #5e5a6b; }
+  .portrait { margin: 0; padding: 9px; background: #efebfa; border: 1px solid #d9d0ec; border-radius: 12px; transform: rotate(2deg); box-shadow: 7px 7px 0 #e7e0f4; }
+  .portrait img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 68% center;
+    border-radius: 5px;
+  }
+  .portrait figcaption { display: flex; align-items: center; gap: 7px; padding: 12px 2px 4px; font: .65rem/1.5 var(--mono); }
+  .status-light { width: 7px; height: 7px; flex-shrink: 0; background: #268164; box-shadow: 2px 2px 0 #abd6b8; }
+  .start-link { display: inline-flex; gap: 24px; align-items: center; padding: 12px 18px; border: 1px solid #55427b; border-radius: 4px; color: #fff; background: #57427f; box-shadow: 3px 3px 0 #c7b8df; font: 700 .8rem/1.5 var(--mono); }
+  .start-link:hover { background: #715798; }
+  .adventure { position: relative; }
+  .journey-hud { position: sticky; top: 12px; z-index: 5; padding: 16px 20px 0; border: 1px solid #49415f; border-radius: 10px; color: #f7f2ff; background: #302b46; box-shadow: 0 5px 0 #c5bdd5, 0 12px 30px #29263f18; }
+  .hud-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+  .hud-label { font: 700 .66rem/1.5 var(--mono); letter-spacing: .12em; }
+  .score { color: #d2c7ec; font: .65rem/1.5 var(--mono); }
+  .stage-nav { display: grid; grid-template-columns: repeat(6, 1fr); margin-block: 16px; }
+  .stage-nav a { position: relative; display: grid; justify-items: center; gap: 7px; text-align: center; }
+  .stage-nav a::before { content: ""; position: absolute; top: 15px; left: 0; right: 0; height: 2px; background: #655a80; z-index: -1; }
+  .stage-nav a:first-child::before { left: 50%; } .stage-nav a:last-child::before { right: 50%; }
+  .stage-dot { display: grid; place-items: center; width: 32px; height: 32px; border: 2px solid #8b7fa3; border-radius: 5px; background: #302b46; color: #d2c7ec; font: 700 .7rem var(--mono); transition: background .2s, transform .2s; }
+  [data-visited] .stage-dot { background: var(--bright); border-color: var(--bright); color: #29263f; }
+  [aria-current] .stage-dot { outline: 2px solid #fff; outline-offset: 3px; transform: translateY(-2px); }
+  .nav-title { font: .58rem/1.4 var(--mono); color: #e4dcf3; }
+  .progress-track { height: 4px; background: #514661; margin: 0 -20px; overflow: hidden; border-radius: 0 0 10px 10px; }
+  .progress-track span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, #94dbb8, #99ccf6, #c5a8f0, #ffcc88); transition: width .4s; }
+  .meadow { --bright: #99dfb5; --tint: #e4f4e9; --deep: #285b46; --land: #72bda0; }
+  .sunset { --bright: #ffd08c; --tint: #fff0d9; --deep: #795020; --land: #dfb16d; }
+  .sky { --bright: #9ecff4; --tint: #e3f0fc; --deep: #305a83; --land: #86b7d9; }
+  .coral { --bright: #f5ad9e; --tint: #fce9e3; --deep: #884939; --land: #d99883; }
+  .violet { --bright: #c5b0f1; --tint: #eee7fb; --deep: #62448a; --land: #ad95d4; }
+  .forest { --bright: #b8d995; --tint: #eef4e1; --deep: #4e6534; --land: #9dbb7e; }
+  .journey-group { margin-top: 40px; }
+  .group-heading { margin: 0 0 24px 74px; }
+  .group-heading h2 { scroll-margin-top: 180px; margin-bottom: 6px; font-size: 1.4rem; color: var(--ink); }
+  .group-heading p { margin: 0; color: #706a7e; font-size: .9rem; }
+  .bonus-group { margin-top: 24px; padding-top: 36px; border-top: 2px dashed #c8b7dc; }
+  .bonus-group .group-heading h2 { color: #704b94; }
+  .stage-nav a:nth-child(4)::before { right: 50%; }
+  .stage-nav a:nth-child(5)::before { left: 50%; }
+  .stage-nav a:nth-child(5) { border-left: 1px dashed #8b7fa3; }
+  .chapters { position: relative; }
+  .chapters::before { content: ""; position: absolute; top: 0; bottom: 0; left: 24px; width: 3px; background: repeating-linear-gradient(#c8bfd9 0 7px, transparent 7px 13px); }
+  .chapter { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 24px; position: relative; padding-bottom: 36px; scroll-margin-top: 180px; }
+  .checkpoint { padding-top: 32px; z-index: 1; }
+  .checkpoint span { display: grid; place-items: center; width: 50px; height: 50px; border: 3px solid var(--land); background: var(--tint); color: var(--deep); box-shadow: 3px 3px 0 #e2dcea; font: 700 .85rem var(--mono); border-radius: 9px; }
+  [data-visited] .checkpoint span { background: var(--bright); }
+  .chapter-card { overflow: hidden; border: 1px solid #d9d3e2; border-radius: 10px; background: white; box-shadow: 0 4px 0 #ece8f1; }
+  .chapter-banner { position: relative; overflow: hidden; isolation: isolate; padding: 20px 28px 36px; background: var(--tint); border-bottom: 1px solid #29263f10; }
+  .stage-meta { display: flex; justify-content: space-between; gap: 12px; color: var(--deep); font: 700 .62rem/1.5 var(--mono); letter-spacing: .08em; margin-bottom: 20px; }
+  .stage-state { opacity: .8; }
+  .chapter-heading { display: flex; gap: 18px; align-items: center; }
+  .chapter h2 { margin: 0 0 5px; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.025em; }
+  .chapter-heading p { margin: 0; color: var(--deep); font: .75rem/1.6 var(--mono); }
+  .sprite-tile { display: grid; place-items: center; flex-shrink: 0; width: 62px; height: 62px; background: var(--bright); border: 2px solid var(--deep); border-radius: 5px; color: var(--deep); box-shadow: 3px 3px 0 var(--land); }
+  .map-icon { position: relative; width: 32px; height: 32px; }
+  .map-icon::before { position: absolute; top: 0; left: 0; width: 4px; height: 4px; box-shadow: var(--sprite); content: ""; }
+  .scenery { position: absolute; bottom: 0; right: 0; width: 230px; height: 60px; z-index: -1; opacity: .4; }
+  .scenery i { position: absolute; bottom: -35px; width: 100px; height: 70px; background: var(--land); clip-path: polygon(0 100%, 0 50%, 20% 50%, 20% 25%, 40% 25%, 40% 0, 60% 0, 60% 25%, 80% 25%, 80% 50%, 100% 50%, 100% 100%); }
+  .scenery i:nth-child(1) { right: 0; bottom: -15px; } .scenery i:nth-child(2) { right: 70px; } .scenery i:nth-child(3) { right: 140px; bottom: -45px; }
+  .scenery span { position: absolute; right: 26px; top: -4px; color: var(--deep); }
+  .chapter-story { padding: 28px; color: #524e60; font-size: .96rem; line-height: 1.8; }
+  .chapter-story > p { margin-bottom: 20px; }
+  .chapter a:not(.start-link) { color: var(--deep); text-decoration: underline; text-underline-offset: 4px; }
+  .skill { display: flex; align-items: center; gap: 9px; border-top: 1px solid #ece8f1; padding-top: 16px; margin-top: 24px; color: var(--deep); font: 700 .7rem/1.5 var(--mono); }
+  .skill span { color: var(--deep); font-size: 1rem; }
+  .log-links { padding-left: 20px; }
+  .field-notes { padding: 14px 18px; background: var(--tint); border-radius: 5px; }
+  .field-notes summary { cursor: pointer; color: var(--deep); font-weight: 650; }
+  .field-notes :global(h2) { margin: 24px 0 8px; font-size: 1.1rem; }
+  .journey-end { text-align: center; padding: 24px 12px 16px 74px; }
+  .end-star { display: block; color: #9a6cc5; font-size: 2.4rem; }
+  .journey-end .hud-label { color: #7b639a; margin: 12px 0; }
+  .journey-end h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 10px; }
+  .journey-end > p:not(.hud-label) { color: #706a7e; }
+  a:focus-visible, summary:focus-visible { outline: 3px solid #9864c8; outline-offset: 5px; }
+  @media (prefers-reduced-motion: no-preference) { :global(html:has(.about-world)) { scroll-behavior: smooth; } }
+  @media (max-width: 650px) {
+    .about-world { width: calc(100% - 28px); }
+    .profile { grid-template-columns: 1fr; gap: 28px; margin-bottom: 36px; }
+    .portrait { max-width: 240px; transform: rotate(1deg); }
+    .portrait img { aspect-ratio: 4 / 3; }
+    .journey-hud { top: 8px; padding: 12px 12px 0; }
+    .hud-top { flex-wrap: wrap; gap: 3px; }
+    .score { font-size: .58rem; }
+    .nav-title { display: none; }
+    .stage-nav { margin-block: 14px; }
+    .progress-track { margin-inline: -12px; }
+    .group-heading { margin-left: 38px; }
+    .group-heading h2 { font-size: 1.2rem; }
+    .group-heading p { font-size: .82rem; }
+    .chapters::before { left: 13px; }
+    .chapter { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; scroll-margin-top: 145px; padding-bottom: 26px; }
+    .checkpoint span { width: 28px; height: 32px; font-size: .6rem; border-width: 2px; border-radius: 4px; }
+    .chapter-banner { padding: 16px 18px 28px; }
+    .chapter-story { padding: 20px 18px; font-size: .92rem; }
+    .chapter-heading { gap: 12px; align-items: start; }
+    .sprite-tile { width: 46px; height: 48px; }
+    .chapter-heading p { font-size: .66rem; }
+    .stage-meta { font-size: .55rem; letter-spacing: .02em; }
+    .journey-end { padding-left: 38px; }
+  }
+</style>
