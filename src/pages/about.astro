@@ -88,7 +88,10 @@ const skills = ["Full-stack beginnings", "Craft & collaboration", "Real-time sys
         <p class="eyebrow">PLAYER 01 · ENGINEER & BUILDER</p>
         <h1>{page.data.title}</h1>
         {page.data.intro?.map((paragraph) => <p>{paragraph}</p>)}
-        <a class="start-link" href="#music-shop">Start the adventure <span aria-hidden="true">↓</span></a>
+        <div class="profile-actions">
+          <a class="start-link" href="#music-shop">Start the adventure <span aria-hidden="true">↓</span></a>
+          <a class="resume-link" href="/resume.pdf" download>Download my résumé <span aria-hidden="true">↓</span></a>
+        </div>
       </div>
       <figure class="portrait">
         <img src="/images/ido-about.jpg" alt="Ido Mizrachi" width="1200" height="800" decoding="async" />
@@ -198,6 +201,7 @@ const skills = ["Full-stack beginnings", "Craft & collaboration", "Real-time sys
   .profile .eyebrow { color: #7056a0; font: 700 .7rem/1.6 var(--mono); letter-spacing: .1em; }
   .profile h1 { font-size: clamp(2.5rem, 5.5vw, 4.3rem); max-width: 550px; }
   .profile p:not(.eyebrow) { color: #5e5a6b; }
+  .profile-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 22px; }
   .portrait { margin: 0; padding: 9px; background: #efebfa; border: 1px solid #d9d0ec; border-radius: 12px; transform: rotate(2deg); box-shadow: 7px 7px 0 #e7e0f4; }
   .portrait img {
     width: 100%;
@@ -211,6 +215,8 @@ const skills = ["Full-stack beginnings", "Craft & collaboration", "Real-time sys
   .status-light { width: 7px; height: 7px; flex-shrink: 0; background: #268164; box-shadow: 2px 2px 0 #abd6b8; }
   .start-link { display: inline-flex; gap: 24px; align-items: center; padding: 12px 18px; border: 1px solid #55427b; border-radius: 4px; color: #fff; background: #57427f; box-shadow: 3px 3px 0 #c7b8df; font: 700 .8rem/1.5 var(--mono); }
   .start-link:hover { background: #715798; }
+  .resume-link { display: inline-flex; gap: 16px; align-items: center; padding: 12px 16px; border: 1px solid #c7b8df; border-radius: 4px; color: #57427f; background: #fff; box-shadow: 3px 3px 0 #e7e0f4; font: 700 .8rem/1.5 var(--mono); }
+  .resume-link:hover { background: #f4f0fa; }
   .adventure { position: relative; }
   .journey-hud { position: sticky; top: 12px; z-index: 5; padding: 16px 20px 0; border: 1px solid #49415f; border-radius: 10px; color: #f7f2ff; background: #302b46; box-shadow: 0 5px 0 #c5bdd5, 0 12px 30px #29263f18; }
   .hud-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
